@@ -27,7 +27,8 @@
             data_attribute  : "original",
             skip_invisible  : true,
             appear          : null,
-            load            : null
+            load            : null,
+			error			: null
         };
 
         function update() {
@@ -112,6 +113,11 @@
                                 settings.load.call(self, elements_left, settings);
                             }
                         })
+						.bind("error", function () {
+							if (settings.error) {
+							settings.error.call(self);
+							}
+						})
                         .attr("src", $self.data(settings.data_attribute));
                 }
             });
